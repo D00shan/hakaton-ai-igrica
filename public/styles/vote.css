@@ -1,0 +1,52 @@
+.list-box {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: black;
+}
+
+.list-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.bot-selection {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.bot-selection span {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.bot-selection button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.bot-selection button img {
+    width: 25px;
+    height: 25px;
+    transition: transform 0.3s;
+}
+
+.bot-selection button:hover img {
+    transform: scale(1.2);
+}
