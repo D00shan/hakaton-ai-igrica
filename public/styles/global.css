@@ -39,3 +39,22 @@ body {
     color: inherit;
     font-weight: inherit;
 }
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.label {
+    color: white;
+    font-size: 36px;
+}
+
+.input-field{
+    border-radius: 7px;
+    width: 150px;
+    height: 30px;
+}

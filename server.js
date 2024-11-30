@@ -16,6 +16,10 @@ app.get('/room-join', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pridruzi_se.html'));
 });
 
+app.get('/room', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'room.html'));
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
