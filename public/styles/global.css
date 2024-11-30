@@ -9,3 +9,33 @@ body {
     align-items: center;
     height: 100vh;
 }
+
+.heading {
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: block;
+    margin: 10px auto;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    background-color: rgba(0, 150, 200, 0.8);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 200px;
+}
+
+.button:hover {
+    background-color: rgba(0, 150, 200, 1);
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: inherit;
+}
