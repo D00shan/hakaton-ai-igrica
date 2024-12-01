@@ -13,27 +13,61 @@
         <div class="room-container">
             <p class="room-id">id sobe: vxwds36</p>
             <div class="players">
-                <div class="player">Igrač 1</div>
-                <div class="player">Igrač 2</div>
-                <div class="player">Igrač 3</div>
-                <div class="player">Igrač 4</div>
-                <div class="player">Igrač 5</div>
+                <div class="player" id="1">Igrač 1</div>
+                <div class="player" id="2">Igrač 2</div>
+                <div class="player" id="3">Igrač 3</div>
+                <div class="player" id="4">Igrač 4</div>
+                <div class="player" id="5">Igrač 5</div>
             </div>
-            <button class="play-btn"><a href="/question">IGRAJ</a></button>
+            <button class="play-btn" onclick="sendMessage()">IGRAJ</button>
         </div>
     </div>
 
     <script>
         const socket = new WebSocket('ws://localhost:8080');
-    
+        var init = 0;
+        let playernum
+        var usrid;
+
         // Event listener for WebSocket connection open
         socket.addEventListener('open', () => {
           console.log('Connected to WebSocket server.');
         });
     
         socket.onmessage = (event) => {
-            console.log("Message from server:", event.data);
+
+            if(event.data === "INIT") {
+
+                window.location.replace(`question.html?usrid=${usrid}`);
+
+            }
+
+            if (init == 0) {
+            
+                usrid = event.data;
+                console.log(usrid);
+
+            }
+
+            playernum = event.data;
+            console.log(playernum)
+
+            for (let i = 1; i <= playernum; i++) {
+
+                console.log(i.toString())
+                document.getElementById(i.toString()).style.backgroundColor = "rgb(255,0,0)"
+                
+            }
+
+            init = 1;
+            
         };
+
+    function sendMessage() {
+    socket.send({
+        phase: 0
+    });
+    }
 
     </script>
 </body>

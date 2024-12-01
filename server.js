@@ -4,11 +4,20 @@ const app = express()
 const path = require('path');
 const WebSocket = require('ws');
 
+const Anthropic = require("@anthropic-ai/sdk");
+
+const anthropic = new Anthropic({
+  apiKey: "xai-Ci2OLAzlVTrR8o4l99VA4mNpTfWvTO8udSCerxAdjdcDqdZMOax1CT2OyDeoQioSEjCiA2DkEDe2Wgzg",
+  baseURL: "https://api.x.ai/",
+});
+
 const wss = new WebSocket.Server({ port: 8080 });
 
 const port = 3000
 
 let playercount = 0;
+let answers = []
+let answercount = 0
 
 //ws
 wss.on('connection', (ws) => {
@@ -16,11 +25,44 @@ wss.on('connection', (ws) => {
   playercount++
 
   // Event listener for incoming messages
-  wss.clients.forEach(client => {
+wss.clients.forEach(client => {
     if (client.readyState === WebSocket.OPEN) {
         client.send(playercount);
     }
 });
+
+ws.on('message', (message) => {
+
+  switch (message.phase) {
+    case 0:
+      wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send("INIT");
+        }
+      });
+    case 1:
+      answercount++
+      answers.push(message);
+      if(answercount == 5) {
+        wss.clients.forEach((client) => {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send("INIT");
+          }
+        });
+      }
+    case 2:
+
+
+      break;
+  
+    default:
+      break;
+  }
+  
+  console.log('Received');
+
+
+})
 
   // Event listener for client disconnection
   ws.on('close', () => {

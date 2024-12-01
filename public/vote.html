@@ -44,5 +44,24 @@
             <button><img src="./images/orange.png" alt="Narandžasta ikonica"></button>
         </div>
     </div>
+
+    <script>
+        const socket = new WebSocket('ws://localhost:8080');
+
+        // Event listener for WebSocket connection open
+        socket.addEventListener('open', () => {
+          console.log('Connected to WebSocket server.');
+        });
+
+        function sendMessage() {
+            socket.send({
+                id: Object.fromEntries(new URLSearchParams(window.location.search)).usrid,
+                msg: document.getElementById('answer').value,
+                phase: 1
+            });
+        }
+
+    </script>
+
 </body>
 </html>

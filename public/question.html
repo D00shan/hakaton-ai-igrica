@@ -9,11 +9,30 @@
 </head>
 <body>
     <div class="container">
-        <div class="question">Šta se jutros jeli za doručak?</div>
+        <div class="question">Kakav je upravni odbor Fonisa?</div>
         <div class="input-section">
             <label for="answer">Unesite odgovor:</label>
             <input type="text" id="answer" placeholder="Vaš odgovor ovde...">
+            <button class="button" onclick="sendMessage()">Pošalji</button>
         </div>
     </div>
+
+    <script>
+        const socket = new WebSocket('ws://localhost:8080');
+
+        // Event listener for WebSocket connection open
+        socket.addEventListener('open', () => {
+          console.log('Connected to WebSocket server.');
+        });
+
+        function sendMessage() {
+            socket.send({
+                id: Object.fromEntries(new URLSearchParams(window.location.search)).usrid,
+                msg: document.getElementById('answer').value,
+                phase: 1
+            });
+        }
+
+    </script>
 </body>
 </html>
