@@ -19,8 +19,22 @@
                 <div class="player">Igrač 4</div>
                 <div class="player">Igrač 5</div>
             </div>
-            <button class="play-btn">IGRAJ</button>
+            <button class="play-btn"><a href="/question">IGRAJ</a></button>
         </div>
     </div>
+
+    <script>
+        const socket = new WebSocket('ws://localhost:8080');
+    
+        // Event listener for WebSocket connection open
+        socket.addEventListener('open', () => {
+          console.log('Connected to WebSocket server.');
+        });
+    
+        socket.onmessage = (event) => {
+            console.log("Message from server:", event.data);
+        };
+
+    </script>
 </body>
 </html>
